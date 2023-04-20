@@ -1,6 +1,7 @@
-const Users = require('../models/users.models');
+const Users = require('../models/user.models');
+const catchAsync = require('../utils/catchAsync');
 
-exports.validExistUser = async (req, res, next) => {
+exports.validExistUser = catchAsync(async (req, res, next) => {
   const { id } = req.params;
   const user = await Users.findOne({
     where: {
@@ -15,4 +16,4 @@ exports.validExistUser = async (req, res, next) => {
   }
   req.user = user;
   next();
-};
+});

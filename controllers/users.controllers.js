@@ -1,29 +1,29 @@
-const Users = require('../models/users.models');
+const User = require('../models/user.models');
+const catchAsync = require('../utils/catchAsync');
 
-exports.finAllUsers = async (req, res) => {
-  const user = await Users.findAll({
+exports.finAllUsers = catchAsync(async (req, res) => {
+  const user = await User.findAll({
     where: {
       status: 'available',
     },
   });
   res.status(200).json({
     status: 'success',
-    message: 'All users',
     results: user.length,
     user,
   });
-};
-exports.finOneUser = (req, res) => {
+});
+exports.finOneUser = catchAsync(async (req, res) => {
   const { user } = req;
   res.status(200).json({
     status: 'success',
     message: 'Userid',
     user,
   });
-};
-exports.createUser = async (req, res) => {
+});
+exports.createUser = catchAsync(async (req, res) => {
   const { name, email, password } = req.body;
-  const user = await Users.create({
+  const user = await User.create({
     name,
     email,
     password,
@@ -33,8 +33,8 @@ exports.createUser = async (req, res) => {
     message: 'User created',
     user,
   });
-};
-exports.updateUser = async (req, res) => {
+});
+exports.updateUser = catchAsync(async (req, res) => {
   const { user } = req;
   const { name, email } = req.body;
   await user.update({
@@ -46,8 +46,8 @@ exports.updateUser = async (req, res) => {
     message: 'Changed data',
     user,
   });
-};
-exports.deleteUser = async (req, res) => {
+});
+exports.deleteUser = catchAsync(async (req, res) => {
   const { user } = req;
   await user.update({
     status: false,
@@ -57,4 +57,4 @@ exports.deleteUser = async (req, res) => {
     message: 'User removed',
     user,
   });
-};
+});

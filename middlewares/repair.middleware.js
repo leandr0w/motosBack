@@ -1,6 +1,7 @@
 const Repair = require('../models/repair.models');
+const catchAsync = require('../utils/catchAsync');
 
-exports.validExistRepair = async (req, res, next) => {
+exports.validExistRepair = catchAsync(async (req, res, next) => {
   const { id } = req.params;
   const repair = await Repair.findOne({
     where: {
@@ -16,4 +17,4 @@ exports.validExistRepair = async (req, res, next) => {
   }
   req.repair = repair;
   next();
-};
+});

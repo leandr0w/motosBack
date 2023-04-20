@@ -26,7 +26,7 @@ const sendErrorProd = (err, res) => {
       message: err.message,
     });
   } else {
-    // console.log('errorrrrrrrr');
+    console.log('errorrrrrrrr');
   }
 };
 

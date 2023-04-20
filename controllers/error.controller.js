@@ -26,7 +26,7 @@ const sendErrorProd = (err, res) => {
       message: err.message,
     });
   } else {
-    console.log('errorrrrrrrr');
+    // console.log('errorrrrrrrr');
   }
 };
 
@@ -36,7 +36,6 @@ const globalErrorHandler = (err, req, res, next) => {
 
   if (process.env.NODE_ENV === 'development') {
     sendErrorDev(err, res);
-    console.log(err);
   }
   if (process.env.NODE_ENV === 'production') {
     let error = err;
